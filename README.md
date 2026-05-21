@@ -1,59 +1,160 @@
-# MetasEnLaVida
+# LifeGoals - Aplicación de Administración de Metas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+Aplicación web moderna construida con **Angular 21** y **Firestore** que permite administrar tus metas en la vida de forma sencilla y eficiente.
 
-## Development server
+## 🎯 Características
 
-To start a local development server, run:
+- ✅ Agregar nuevas metas
+- ✅ Visualizar todas tus metas en tiempo real
+- ✅ Eliminar metas completadas
+- ✅ Almacenamiento en la nube con Firestore
+- ✅ Interfaz moderna y responsiva
+- ✅ Acceso desde cualquier dispositivo
 
+## 🛠️ Requisitos Previos
+
+- Node.js 20.x o superior
+- Angular 21
+- npm o yarn
+- Una cuenta de Firebase con proyecto creado
+
+## 📦 Instalación
+
+1. **Clonar el repositorio**
 ```bash
-ng serve
+git clone https://github.com/yourusername/lifegoals.git
+cd lifegoals
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+2. **Instalar dependencias**
 ```bash
-ng generate component component-name
+npm install --legacy-peer-deps
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. **Configurar Firebase**
+   - Ir a la consola de Firebase: https://console.firebase.google.com/
+   - Crear un nuevo proyecto llamado "lifegoals"
+   - Crear una base de datos Firestore con colección "metas" y campo "meta" tipo String
+   - Copiar las credenciales de Firebase y actualizar los archivos de ambiente:
+     - `src/environments/environment.ts`
+     - `src/environments/environment.development.ts`
+   - Ver [FIREBASE_SETUP.md](./FIREBASE_SETUP.md) para instrucciones detalladas
 
+## 🚀 Ejecución
+
+### Desarrollo
 ```bash
-ng generate --help
+npm start
+```
+La aplicación estará disponible en `http://localhost:4200`
+
+### Build para producción
+```bash
+npm run build
 ```
 
-## Building
+### Docker
 
-To build the project run:
-
+**Construir imagen:**
 ```bash
-ng build
+docker build -t lifegoals:latest .
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
+**Ejecutar contenedor:**
 ```bash
-ng test
+docker run -p 3000:3000 lifegoals:latest
 ```
 
-## Running end-to-end tests
+## 🏗️ Estructura del Proyecto
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── home/           # Componente principal
+│   │   └── about/          # Página de información
+│   ├── services/
+│   │   └── meta.service.ts # Servicio de Firestore
+│   ├── models/
+│   │   └── meta.model.ts   # Modelo de datos
+│   ├── app.ts              # Componente raíz
+│   ├── app.routes.ts       # Configuración de rutas
+│   └── app.config.ts       # Configuración de app
+├── environments/           # Variables de ambiente
+└── styles.css             # Estilos globales
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 📝 Configuración de Ambiente
 
-## Additional Resources
+### environment.ts (Producción)
+```typescript
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: 'YOUR_API_KEY',
+    authDomain: 'lifegoals-xxxxx.firebaseapp.com',
+    projectId: 'lifegoals-xxxxx',
+    storageBucket: 'lifegoals-xxxxx.appspot.com',
+    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+    appId: 'YOUR_APP_ID'
+  }
+};
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🔗 Rutas Disponibles
+
+- `/` o `/home` - Página principal con administración de metas
+- `/about` - Página de información y contacto
+
+## 👨‍💻 Tecnologías Utilizadas
+
+- **Angular 21** - Framework frontend
+- **Firebase** - Backend y autenticación
+- **Firestore** - Base de datos en tiempo real
+- **TypeScript** - Lenguaje de programación
+- **HTML5 & CSS3** - Estructura y estilos
+
+## 🌐 Despliegue
+
+### Docker Hub
+```bash
+docker tag lifegoals:latest yourusername/lifegoals:latest
+docker push yourusername/lifegoals:latest
+```
+
+### Render.com
+1. Conectar el repositorio de GitHub
+2. Crear servicio Web
+3. Configurar comando de build: `npm install --legacy-peer-deps && npm run build`
+4. Configurar comando de inicio: `npm start`
+
+## 🤖 CI/CD Pipeline
+
+El proyecto incluye un workflow de GitHub Actions que:
+- Construye la aplicación Angular
+- Crea una imagen Docker
+- La sube automáticamente a Docker Hub
+
+Necesitas configurar estos secretos en GitHub:
+- `DOCKER_USERNAME` - Tu usuario de Docker Hub
+- `DOCKER_PASSWORD` - Tu token de Docker Hub
+
+## 📄 Entregables
+
+- 🔗 URL del repositorio público en GitHub
+- 🐳 Imagen en Docker Hub
+- 🚀 Aplicación desplegada en Render.com
+
+## 📞 Soporte
+
+Para preguntas o problemas, contacta a:
+- **Email:** contact@example.com
+- **GitHub:** https://github.com/yourusername
+
+## 📜 Licencia
+
+Este proyecto está bajo la licencia MIT. Ver archivo `LICENSE` para más detalles.
+
+---
+
+**Desarrollado con ❤️ por Alessandro**

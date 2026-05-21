@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="home-content">
+    <h1>My Life Goals</h1>
+    <p class="subtitle">Manage your personal goals</p>
+
+    <div class="split-layout">
+      <!-- Left Column: Add Goal -->
+      <div class="left-column">
+        <h2>Add a New Goal</h2>
+        <div class="input-group">
+          <input
+            type="text"
+            [(ngModel)]="newMeta"
+            (keyup.enter)="addMeta()"
+            placeholder="Enter your goal..."
+            class="meta-input"
+            [disabled]="isLoading"
+          />
+          <button (click)="addMeta()" [disabled]="isLoading" class="add-btn">
+            {{ isLoading ? 'Adding...' : 'Add Goal' }}
+          </button>
+        </div>
+        <button (click)="toggleMetas()" class="view-btn">
+          {{ showMetas ? 'Hide Goals' : 'View Goals' }}
+        </button>
+      </div>
+
+      <!-- Right Column: Goals List -->
+      <div class="right-column" *ngIf="showMetas">
+        <h2>Your Goals</h2>
+        <div *ngIf="metas.length === 0" class="empty-state">
+          <p>No goals yet</p>
+        </div>
+
+        <div *ngIf="metas.length > 0" class="metas-list">
+          <div *ngFor="let meta of metas" class="meta-card">
+            <div class="meta-content">
+              <p class="meta-text">{{ meta.meta }}</p>
+            </div>
+            <button (click)="deleteMeta(meta.id)" class="delete-btn" title="Delete goal">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

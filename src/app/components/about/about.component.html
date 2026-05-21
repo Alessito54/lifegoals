@@ -1,0 +1,9 @@
+<div style="max-width: 600px; margin: 40px auto; padding: 20px;">
+  <h1 style="text-align: center; margin-bottom: 30px;">Developer Information</h1>
+
+  <div style="padding: 20px; background: #f5f5f5; border-radius: 5px;">
+    <p><strong>Name:</strong> {{ developer.name }}</p>
+    <p><strong>Email:</strong> <a [href]="'mailto:' + developer.email">{{ developer.email }}</a></p>
+    <p><strong>Phone:</strong> {{ developer.phone }}</p>
+  </div>
+</div>
