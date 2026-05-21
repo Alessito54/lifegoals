@@ -1,0 +1,61 @@
+<div class="home-container">
+
+  <div class="hero">
+    <p class="hero-sub">What will you achieve?</p>
+    <h1 class="hero-title">Your Life Goals</h1>
+  </div>
+
+  <div class="content-grid">
+
+    <!-- ADD GOAL PANEL -->
+    <div class="panel panel-add">
+      <div class="panel-header">
+        <span class="panel-icon">✦</span>
+        <h2>Add a Life Goal</h2>
+      </div>
+      <p class="panel-desc">Use this form below to add a new life goal</p>
+
+      <div *ngIf="errorMsg" class="error-banner">{{ errorMsg }}</div>
+
+      <div class="input-group">
+        <input
+          type="text"
+          [(ngModel)]="newMeta"
+          placeholder="e.g. Travel to Japan..."
+          class="goal-input"
+          (keyup.enter)="addMeta()"
+        />
+        <button
+          class="btn-add"
+          (click)="addMeta()"
+          [disabled]="isAdding || !newMeta.trim()"
+        >
+          <span *ngIf="!isAdding">+ Add Item</span>
+          <span *ngIf="isAdding">Saving...</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- GOALS LIST PANEL -->
+    <div class="panel panel-list">
+      <div class="panel-header">
+        <span class="panel-icon">◈</span>
+        <h2>Your Goal List <span class="count">({{ metas.length }})</span></h2>
+      </div>
+
+      <div *ngIf="metas.length === 0" class="empty-state">
+        <p>No goals yet. Start dreaming big! ✦</p>
+      </div>
+
+      <ul class="goals-list">
+        <li *ngFor="let m of metas" class="goal-item">
+          <span class="goal-text">{{ m.meta }}</span>
+          <button class="btn-delete" (click)="deleteMeta(m.id!)">
+            delete
+          </button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
